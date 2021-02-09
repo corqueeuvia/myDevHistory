@@ -1,0 +1,68 @@
+<meta charset="UTF-8">
+
+<script>
+
+    function pulaLinha() {
+
+        document.write("<br>");
+        document.write("<br>");
+	}
+
+    function mostra(frase) {
+
+        document.write(frase);
+        pulaLinha();
+	}
+
+	function sorteia(n) {
+		
+		return parseInt(Math.random() * n);
+	}
+
+	var numeroPensado = sorteia(10);
+	
+	console.log(numeroPensado);
+	
+	alert("Estou pensando em um número de 0 a 10. Consegue adivinhar qual é?")
+
+	var maximoTentativas = 3;
+
+	for (var tentativa = 1; tentativa <= maximoTentativas; tentativa++) {
+
+		var chute = parseInt(prompt("E aí, qual seu palpite?"));
+		
+		if (chute == numeroPensado && tentativa == 1) {
+
+			mostra("<h1>UAU! De primeira!!</h1> <h2>Eu estava pensando em " + numeroPensado + "</h2><h3> Você é algum tipo de vidente? oO</h3>");
+			mostra("Quer que eu pense em outro? Atualiza a página e bora lá!");
+			break
+		} else {
+
+			if (chute == numeroPensado) {
+
+				mostra("<h1>AACEEERTOOOOU!</h1><h2> Era " + numeroPensado + ", mesmo.</h2><h3>***Parabéns!***</h3>");
+				mostra("<big>Agora quero ver você acertar de primeira! Atualiza a página que eu penso em outro número.</big>");
+				break
+			} else {
+
+				if (maximoTentativas - tentativa == 0) {
+
+					alert("Ihh. Acabaram as tentativas! Eu estava pensando no número " + numeroPensado + "!");
+					mostra("<h1>Mas podemos começar de novo.</h1><h2> Atualiza a página pra gente jogar mais uma rodada!</h2>");
+				} else {
+
+					if (numeroPensado > chute) {
+
+						alert("Não.. é um número MAIOR que " + chute);
+						alert("Vou deixar você tentar mais " + (maximoTentativas - tentativa) + "x.");
+
+					} else {
+
+						alert("Não.. um número MENOR que " + chute);
+						alert("Vou deixar você tentar mais " + (maximoTentativas - tentativa) + "x.");
+					}
+				}
+			}
+		}
+	}
+</script>
