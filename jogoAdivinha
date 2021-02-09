@@ -58,13 +58,13 @@
 		if(input.value == numeroPensado && chance == 1) {
 
 			alert("CARACA! Você acertou de primeira!");
-			chance = chance + 3;
+			chance = limiteDeChances++;
 			fimDeJogo();
 			mostra("<br><br><big> Não é justo, você deve ser vidende.. Oo</big>");
 
 		} else {
 			
-			while (chance <= 3) {
+			while (chance <= limiteDeChances) {
 
 				if (input.value == numeroPensado) {
 				
@@ -73,17 +73,17 @@
 					mostra("<h3>Agora eu quero ver você acertar de primeira!</h3>");
 					break;
 
-                		} else {
+                } else {
 				
 					if (input.value > numeroPensado) {
-						alert("ERRROU! Tenta um número MENOR que " + input.value + ". Pode tentar mais " + (3 - chance) + "x.");
+						alert("ERRROU! Tenta um número MENOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
 						chance++;
 						input.value = " ";
 						input.focus();
 						return;
 					} else {
 
-						alert("ERRROU! Tenta um número MAIOR que " + input.value + ". Pode tentar mais " + (3 - chance) + "x.");
+						alert("ERRROU! Tenta um número MAIOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
 						chance++;
 						input.value = " ";
 						input.focus();
