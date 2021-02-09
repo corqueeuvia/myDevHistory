@@ -1,68 +1,100 @@
 <meta charset="UTF-8">
 
+<h1>Estou pensando em um número de 0 a 10!</h1>
+<br>
+<h3>Consegue adivinhar qual é?</h3>
+<br>
+<input>
+<button>É esse?</button>
+
 <script>
 
-    function pulaLinha() {
+	function pulaLinha() {
 
-        document.write("<br>");
-        document.write("<br>");
+		document.write("<br>");
 	}
 
-    function mostra(frase) {
+	function mostra(frase) {
 
-        document.write(frase);
-        pulaLinha();
+        	document.write(frase);
 	}
-
-	function sorteia(n) {
+   
+   	function sorteia(n) {
 		
 		return parseInt(Math.random() * n);
 	}
-
-	var numeroPensado = sorteia(10);
+	   
+	function fim () {
 	
+		mostra("<h2> FIM </h2><br><big>Se mudar de ideia, só apertar BORA! ali em cima.</big>")
+	}
+	
+	function reload() {
+	
+		location.reload();
+	}
+	
+	function fimDeJogo() {
+		mostra("<h2>Vamos jogar de novo?</h2><br>");
+		mostra("<button type=text id=Sim>Bora!</button>");
+		mostra("    <button type=text id=Não>Nope.</button>");
+		var reiniciar = document.querySelector("#Sim");
+		reiniciar.onclick = reload;
+		var encerrar = document.querySelector("#Não");
+		encerrar.onclick = fim;
+		
+	}
+
+	var input = document.querySelector("input");
+	input.focus();
+	
+	var limiteDeChances = 3;
+	var chance = 1;
+	
+	var numeroPensado = sorteia(10);
 	console.log(numeroPensado);
 	
-	alert("Estou pensando em um número de 0 a 10. Consegue adivinhar qual é?")
+	function verifica (){
+		if(input.value == numeroPensado && chance == 1) {
 
-	var maximoTentativas = 3;
+			alert("CARACA! Você acertou de primeira!");
+			chance = chance + 3;
+			fimDeJogo();
+			mostra("<br><br><big> Não é justo, você deve ser vidende.. Oo</big>");
 
-	for (var tentativa = 1; tentativa <= maximoTentativas; tentativa++) {
-
-		var chute = parseInt(prompt("E aí, qual seu palpite?"));
-		
-		if (chute == numeroPensado && tentativa == 1) {
-
-			mostra("<h1>UAU! De primeira!!</h1> <h2>Eu estava pensando em " + numeroPensado + "</h2><h3> Você é algum tipo de vidente? oO</h3>");
-			mostra("Quer que eu pense em outro? Atualiza a página e bora lá!");
-			break
 		} else {
+			
+			while (chance <= 3) {
 
-			if (chute == numeroPensado) {
+				if (input.value == numeroPensado) {
+				
+					alert("AÊÊ! Acertou! Tava pensando em " + numeroPensado + ", mesmo. Parabéns!");
+					fimDeJogo();
+					mostra("<h3>Agora eu quero ver você acertar de primeira!</h3>");
+					break;
 
-				mostra("<h1>AACEEERTOOOOU!</h1><h2> Era " + numeroPensado + ", mesmo.</h2><h3>***Parabéns!***</h3>");
-				mostra("<big>Agora quero ver você acertar de primeira! Atualiza a página que eu penso em outro número.</big>");
-				break
-			} else {
-
-				if (maximoTentativas - tentativa == 0) {
-
-					alert("Ihh. Acabaram as tentativas! Eu estava pensando no número " + numeroPensado + "!");
-					mostra("<h1>Mas podemos começar de novo.</h1><h2> Atualiza a página pra gente jogar mais uma rodada!</h2>");
-				} else {
-
-					if (numeroPensado > chute) {
-
-						alert("Não.. é um número MAIOR que " + chute);
-						alert("Vou deixar você tentar mais " + (maximoTentativas - tentativa) + "x.");
-
+                		} else {
+				
+					if (input.value > numeroPensado) {
+						alert("ERRROU! Tenta um número MENOR que " + input.value + ". Pode tentar mais " + (3 - chance) + "x.");
+						chance++;
+						input.value = " ";
+						input.focus();
+						return;
 					} else {
 
-						alert("Não.. um número MENOR que " + chute);
-						alert("Vou deixar você tentar mais " + (maximoTentativas - tentativa) + "x.");
+						alert("ERRROU! Tenta um número MAIOR que " + input.value + ". Pode tentar mais " + (3 - chance) + "x.");
+						chance++;
+						input.value = " ";
+						input.focus();
+						return;
 					}
 				}
 			}
 		}
 	}
+
+	var button = document.querySelector("button");
+	button.onclick = verifica;
+
 </script>
