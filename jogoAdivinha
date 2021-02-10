@@ -26,7 +26,7 @@
 	   
 	function fim () {
 	
-		mostra("<h2> FIM </h2><br><big>Se mudar de ideia, só apertar BORA! ali em cima.</big>")
+		mostra("<h2> FIM </h2><br>Se mudar de ideia, só apertar <big>BORA!</big> ali em cima.")
 	}
 	
 	function reload() {
@@ -35,7 +35,7 @@
 	}
 	
 	function fimDeJogo() {
-		mostra("<h2>Vamos jogar de novo?</h2><br>");
+		mostra("<h2>Mais uma vez?</h2><br>");
 		mostra("<button type=text id=Sim>Bora!</button>");
 		mostra("    <button type=text id=Não>Nope.</button>");
 		var reiniciar = document.querySelector("#Sim");
@@ -55,45 +55,57 @@
 	console.log(numeroPensado);
 	
 	function verifica (){
-		if(input.value == numeroPensado && chance == 1) {
 
-			alert("CARACA! Você acertou de primeira!");
-			chance = limiteDeChances++;
-			fimDeJogo();
-			mostra("<br><br><big> Não é justo, você deve ser vidende.. Oo</big>");
+		while (chance <= limiteDeChances) {
 
-		} else {
-			
-			while (chance <= limiteDeChances) {
+			if(input.value == numeroPensado && chance == 1) {
+
+				alert("CARACA! Você acertou de primeira!");
+				fimDeJogo();
+				mostra("<br><br><big> Não é justo, você deve ser vidende.. Oo</big>");
+				break;
+
+			} else {
 
 				if (input.value == numeroPensado) {
-				
-					alert("AÊÊ! Acertou! Tava pensando em " + numeroPensado + ", mesmo. Parabéns!");
+					
+					alert("AÊÊ! Tava pensando em " + numeroPensado + ", mesmo. Parabéns!");
 					fimDeJogo();
 					mostra("<h3>Agora eu quero ver você acertar de primeira!</h3>");
 					break;
 
-                } else {
-				
-					if (input.value > numeroPensado) {
-						alert("ERRROU! Tenta um número MENOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
-						chance++;
-						input.value = " ";
-						input.focus();
-						return;
+	        	} else {
+
+	        		if (limiteDeChances - chance == 0) {
+
+						alert("EPA! Fim da linha. Acabaram as tentativas.");
+						fimDeJogo();
+						mostra("<br><br><big>Eu estava pensando no número " + numeroPensado + ", tenta de novo!");
+						break;
+
 					} else {
 
-						alert("ERRROU! Tenta um número MAIOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
-						chance++;
-						input.value = " ";
-						input.focus();
-						return;
+						if (input.value > numeroPensado) {
+							alert("ERRROU! Tenta um número MENOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
+							chance++;
+							input.value = " ";
+							input.focus();
+							return;
+						
+						} else {
+
+							alert("ERRROU! Tenta um número MAIOR que " + input.value + ". Pode tentar mais " + (limiteDeChances - chance) + "x.");
+							chance++;
+							input.value = " ";
+							input.focus();
+							return;
+						}
 					}
 				}
 			}
 		}
 	}
-
+	
 	var button = document.querySelector("button");
 	button.onclick = verifica;
 
