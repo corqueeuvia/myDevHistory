@@ -52,8 +52,7 @@
 	var chance = 1;
 	
 	var numeroPensado = sorteia(10);
-	console.log(numeroPensado);
-	
+		
 	function verifica (){
 
 		while (chance <= limiteDeChances) {
