@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+
+<h1> Diferenças de idade </h1>
+
+<script>
+
+	function pulaLinha() {
+		document.write("<br><hr><br>");
+	}
+
+	function calculaDiferenca() {
+		minhaIdade = 27
+		nomePessoa = prompt("Vamos comparar a idade de Caique com a idade de quem?");
+		idadePessoa = prompt("Ok. Quantos anos " + nomePessoa + " tem?");
+		return diferenca = idadePessoa - minhaIdade
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	calculaDiferenca();
+	mostra("<big>A diferença de idade entre Caique e " + nomePessoa + " é de " + diferenca + " anos!</big>");
+	mostra("E aí? Sabe me dizer quantos anos Caique tem?");
+
+</script>
