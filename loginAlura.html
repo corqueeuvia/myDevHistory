@@ -1,0 +1,48 @@
+<meta charset="UTF-8">
+<script>
+
+   function pulaLinha() {
+    document.write("<br>");
+   }
+    
+   function mostra(frase) {
+    document.write(frase);
+    pulaLinha();
+   }
+
+   var loginCadastrado = prompt("Digite seu nome para cadastro:");
+   
+   var codigoSenha = parseInt(Math.random()*9999);
+   
+   var senhaCadastrada = loginCadastrado + codigoSenha;
+   console.log(codigoSenha);
+   
+   alert ("ANOTE! Use seu nome para fazer login. Sua senha será seu nome seguido de " + codigoSenha + ". Clique OK para fazer o primeiro acesso.");
+   
+   var tentativa = 1;
+   var maximoTentativas = 3;
+
+   for (tentativa; tentativa <= maximoTentativas; tentativa++){
+        var loginInformado = prompt("Login: (lembre que é seu nome cadastrado)");
+        var senhaInformada = prompt("Senha: (lembre que tem um código numérico)");
+
+        if( loginCadastrado == loginInformado && senhaCadastrada == senhaInformada ) {
+
+        alert("Boas vindas, " + loginInformado);
+        mostra("<h3> Você conseguiu acessar esta página! </h3>");
+        mostra("<big>" + loginInformado + " é a pessoa mais sexy que já acessou essa página! </big>")
+        break;
+
+        } else {
+            if (tentativa == 3) {
+                alert("OPS! Máximo de tentativas.");
+                mostra("<h3> Acho que você caiu do cavalinho, " + loginInformado + "...</h3>")
+                mostra("<big>Mas não fique triste. Atualize a página e tente mais uma vez.</big>")
+                
+            } else {
+
+                alert("Avisei pra anotar!! Agora só pode tentar mais " + (maximoTentativas - tentativa) + "x!");
+            }
+        }    
+    }
+</script>
