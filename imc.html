@@ -1,0 +1,47 @@
+<meta charset="UTF-8">
+
+<h1>Calculando o IMC</h1>
+
+<script>
+ 
+    function pulaLinha() {
+
+        document.write("<br>");
+        document.write("<br>");
+
+	}
+
+    function mostra(frase) {
+
+        document.write(frase);
+        pulaLinha();
+	}
+
+	function imc() {
+		var nome = prompt("Vou calcular o IMC de quem?");
+		var peso = prompt("Quanto " + nome + " pesa? (use ponto para separar Kg e g = 62.5)");
+		var altura = prompt("E qual a altura de " + nome + "? (use ponto para separar m e cm = 1.72)");
+		var imc = Math.round(peso / (altura * altura));
+		mostra("<h2>O IMC de " + nome + " é " + imc + " ;)</h2>");
+
+		if (imc < 18.5) {
+			mostra("<big>Seu IMC está abaixo do recomendado!</big>");
+			mostra("Será que entendi seus dados direito? Você disse que seu peso é " + peso + " e sua altura " + altura + " Se foi isso mesmo, se liga! Um IMC abaixo do recomendado significa que você precisa ganhar peso e pode até ser algo grave, como desnutrição. Uma pessoa desnutrida precisa de atenção médica, procure orientação o quanto antes.");
+		}
+
+		if (imc >= 18.5 && imc < 35) {
+			mostra("<big>Seu IMC está dentro do ideal!</big>");
+			mostra("Uhuuul! Isso quer dizer que seu peso está bom em relação à sua altura. Mas não confie 100% neste teste, tá? O cálculo de IMC é uma ferramenta útil, mas não é perfeita. Se você suspeita que pode ter algo errado com seu peso, fale imediatamente com alguém profissional na área, pode ser uma médica ou médico, ou nutricionista.");
+		}
+
+		if (imc >= 35) {
+			mostra("<big>Seu IMC está acima do recomendado!</big>");
+			mostra("O IMC acima do ideal pode indicar obesidade. Em alguns casos a obesidade pode estar associada a condições mais graves de saúde, então é mais do que válido procurar orientação médica. A não ser que você seja uma atleta ou um atleta e tenha músculos demais... nestes casos o cálculo do IMC também aponta acima do recomendado, porque músculos são mais pesados.");
+		}
+
+		mostra("<h3>Nunca confie apenas no cálculo do IMC para tirar conclusões sobre sua saúde, a palavra final deve ser de uma pessoa profissional.</h3>");
+	}	
+   
+	imc();
+	
+</script>
