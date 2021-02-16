@@ -1,0 +1,34 @@
+<meta charset="utf-8">
+
+<h2> Álcool ou gasolina?</h2>
+
+<script>
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase){
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function calculaConsumo() {
+		var tanque = prompt("Qual a capacidade do tanque?");
+		caminhoComGasolina = prompt("Quantos Km dura o tanque cheio de gasolina?"); //valor em km
+		consumoDeGasolina = caminhoComGasolina/tanque;
+		caminhoComAlcool = prompt("Quantos Km dura o tanque cheio de álcool?"); //valor em km
+		consumoDeAlcool = caminhoComAlcool/tanque;
+
+		mostra("<big>Seu veículo faz " + Math.round(consumoDeGasolina) + "Km por litro de gasolina e " + Math.round(consumoDeAlcool) + "Km por litro de álcool.</big>");
+		
+		if (consumoDeAlcool > consumoDeGasolina) {
+			mostra("<h3>Compensa mais usar álcool.</h3>")
+		}
+		else {
+				mostra("<h3>Compensa mais usar gasolina.</h3>")
+		}
+	}
+
+	calculaConsumo();
+
+</script>
